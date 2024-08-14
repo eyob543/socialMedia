@@ -2,7 +2,7 @@
 import { useLoaderData, Await } from "react-router-dom";
 import { Suspense } from "react";
 import Typography from "@mui/material/Typography";
-
+import { FaRegUserCircle } from "react-icons/fa";
 import { v4 as uuid4 } from "uuid";
 import Fallback from "./Fallback";
 
@@ -17,10 +17,29 @@ export default function Followers() {
               return <Typography>No followers yet</Typography>;
             }
             return (
-              <section>
-                {loadedFollowers.map((follower) => (
-                  <Typography key={uuid4()}>{follower}</Typography>
-                ))}
+              <section className="scroll-auto">
+                {loadedFollowers.map((follower) => {
+                  return (
+                    <div key={uuid4()} className="flex gap-2 mb-2">
+                      {follower.profilePhoto ? (
+                        <img
+                          src={follower.profilePhoto}
+                          className=" rounded-full"
+                          alt="User profile"
+                        />
+                      ) : (
+                        <FaRegUserCircle className="w-6 h-6" />
+                      )}
+                      <Typography
+                        sx={{
+                          fontSize: "1.1rem",
+                        }}
+                      >
+                        {follower}
+                      </Typography>
+                    </div>
+                  );
+                })}
               </section>
             );
           }}

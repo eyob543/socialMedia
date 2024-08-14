@@ -17,7 +17,7 @@ export default async function handleSignInWithGoogle() {
 
     await signInWithPopup(auth, provider);
     const userName = auth.currentUser.displayName;
-
+    const profilePicture = auth.currentUser?.photoURL;
     if (!_.has(data, userName)) {
       const userRef = ref(db, `users/${userName}`);
       await set(userRef, {
@@ -25,6 +25,7 @@ export default async function handleSignInWithGoogle() {
         following: [],
         likedBy: [],
         userName,
+        profilePicture,
       });
     }
   } catch (error) {

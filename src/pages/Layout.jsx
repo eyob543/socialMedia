@@ -10,11 +10,13 @@ export default function Layout() {
   const isLoggedIn = useUserStore((state) => state.isLoggedIn);
   const setIsLoggedIn = useUserStore((state) => state.setIsLoggedIn);
   const setUserName = useUserStore((state) => state.setUserName);
+  const setProfilePicture = useUserStore((state) => state.setProfilePicture);
   const auth = getAuth();
   onAuthStateChanged(auth, (user) => {
     if (user) {
       setIsLoggedIn(true);
       setUserName(user.displayName);
+      setProfilePicture(user.photoURL);
     } else {
       setIsLoggedIn(false);
     }
