@@ -62,7 +62,8 @@ export default function Home() {
                         {post.isFollowing ? (
                           <Button
                             sx={{
-                              fontSize: 12,
+                              fontSize: 14,
+                              fontWeight: 500,
                             }}
                             onClick={() => {
                               handleUnFollow(post.userName, currentUser);
@@ -95,7 +96,7 @@ export default function Home() {
                           image={post.url}
                           sx={{
                             minHeight: "12rem",
-                            maxWidth: "100%",
+                            maxWidth: "30vw",
                           }}
                         />
                       )}

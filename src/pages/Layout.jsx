@@ -40,7 +40,7 @@ export default function Layout() {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            isActive ? "bg-slate-600 rounded-lg p-1" : "underline"
+            isActive ? "bg-slate-600 rounded-lg p-1 " : "underline "
           }
         >
           <HomeIcon sx={{ fontSize: "2rem" }} className="text-xl  text-white" />
@@ -48,7 +48,7 @@ export default function Layout() {
         <NavLink
           to="post"
           className={({ isActive }) =>
-            isActive ? "bg-slate-600 rounded-lg p-1" : "underline"
+            isActive ? "bg-slate-600 rounded-lg p-1 " : "underline "
           }
         >
           <PlusIcon sx={{ fontSize: "2rem" }} className="text-xl text-white" />
@@ -56,18 +56,18 @@ export default function Layout() {
         <NavLink
           to="user"
           className={({ isActive }) =>
-            isActive ? "bg-slate-600 rounded-lg p-1" : "underline"
+            isActive ? "bg-slate-600 rounded-lg p-1 " : "underline "
           }
         >
           <FaRegUserCircle className="w-8 h-8 text-white" />
         </NavLink>
         {!isLoggedIn ? (
           <button type="button" onClick={handleSignInWithGoogle}>
-            <FcGoogle className="w-8 h-8 text-white" />
+            <FcGoogle className="w-8 h-8 text-white " />
           </button>
         ) : (
           <button type="button" onClick={handleSignOut}>
-            <FaSignOutAlt className="w-8 h-8 text-white" />
+            <FaSignOutAlt className="w-8 h-8 text-white " />
           </button>
         )}
       </footer>

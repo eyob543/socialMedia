@@ -5,25 +5,19 @@ import { v4 as uuid4 } from "uuid";
 import { ref as imageRef, uploadBytes, getDownloadURL } from "firebase/storage";
 export default async function action({ request }) {
   const formData = await request.formData();
-  const URL = formData.get("url");
   const description = formData.get("description");
-  const image = formData.get("image"); // Directly get the image from formData
+  const image = formData.get("image");
   const errors = {};
   const db = database;
   const blobStorage = storage;
   const userName = auth.currentUser?.displayName;
   const uid = uuid4();
 
-  if (!URL && !image) {
+  if (!image) {
     errors.post = "Please choose a picture or video to post";
     return errors;
   }
 
-  if (URL && image) {
-    errors.post =
-      "You can't choose both URL and local photos. Please choose one.";
-    return errors;
-  }
   if (image) {
     const validTypes = [
       "image/jpeg",
@@ -40,14 +34,7 @@ export default async function action({ request }) {
   try {
     const postRef = ref(db, `users/${userName}/posts/${uid}`);
 
-    if (URL) {
-      await set(postRef, {
-        url: URL,
-        description,
-        comments: [],
-        likedBy: [],
-      });
-    } else if (image) {
+    if (image) {
       const storageRef = imageRef(
         blobStorage,
         `users/${userName}/posts/${uid}/${image.name}`,
